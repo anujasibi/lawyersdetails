@@ -8,9 +8,11 @@ class SpiderSpider(scrapy.Spider):
     start_urls = ['http://http://www.avvo.com/all-lawyers/ny/new_york.html/']
 
     def parse(self, response):
-       for spider in response.css('div.quote'):
+       for spider in response.css('div.spider'):
             yield {
-                'text': quote.css('span.text::text').extract_first(),
-                'author': quote.css('small.author::text').extract_first(),
-                'tags': quote.css('div.tags a.tag::text').extract(),
+                'name': spider.css('title::text').extract_first(),
+                'about': spider.css('.card p::text').extract(),
+                'license': spider.css('li time:text').extract_first(),
+                'avvo_ratting':spider.css('.h3::text').extract_first()'
+                'image_url':response.css('img').xpath('@src').extract_first()
             }
