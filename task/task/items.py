@@ -10,5 +10,8 @@ import scrapy
 
 class TaskItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    name = scrapy.Field()
+    about=scrapy.Field()
+    license=scrapy.Field()
+    avvo_ratting=scrapy.Field()
+    image=scrapy.Field()
