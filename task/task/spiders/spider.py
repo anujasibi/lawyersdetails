@@ -1,18 +1,18 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- 
 import scrapy
 
-
-class SpiderSpider(scrapy.Spider):
-    name = 'spider'
-    allowed_domains = ['http://www.avvo.com/all-lawyers/ny/new_york.html']
-    start_urls = ['http://http://www.avvo.com/all-lawyers/ny/new_york.html/']
+class NewSpider(scrapy.Spider):
+    name = 'new'
+    allowed_domains = ['www.avvo.com/all-lawyers/ny/new_york.html']
+    start_urls = ['http://www.avvo.com/all-lawyers/ny/new_york.html']
 
     def parse(self, response):
-       for spider in response.css('div.spider'):
-            yield {
-                'name': spider.css('title::text').extract_first(),
-                'about': spider.css('.card p::text').extract(),
-                'license': spider.css('li time:text').extract_first(),
-                'avvo_ratting':spider.css('.h3::text').extract_first()'
-                'image_url':response.css('img').xpath('@src').extract_first()
-            }
+        for first in response.css('div.row a.v-pa-list-link::attr("href")').extract():
+            yield scrapy.Request(response.urljoin("/"+first), callback=self.parse_first)
+    def parse_first(self, response):
+        for url in response.css('div.row a.v-serp-block-link::attr("href")').extract():
+            yield scrapy.Request(response.urljoin(+url), callback=self.parse_second)
+    def parse_second(self,response):
+        yield {
+             'name':response.css('div.row span.name::text').extract_first()
+              }
