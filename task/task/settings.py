@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for task project
+# Scrapy settings for project project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,18 +9,34 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'task'
+BOT_NAME = 'project'
 
-SPIDER_MODULES = ['task.spiders']
-NEWSPIDER_MODULE = 'task.spiders'
+SPIDER_MODULES = ['project.spiders']
+NEWSPIDER_MODULE = 'project.spiders'
 
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'task (+http://www.yourdomain.com)'
+#Crawl responsibly by identifying yourself (and your website) on the user-agent
+USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+ROTATING_PROXY_LIST=[
+'5.58.152.191:42600'
+'46.39.252.123:61165'
+'188.231.142.71:59334'
+'206.81.0.100:8080'
+'82.76.164.208:58981'
+'91.135.22.235:49317'
+'109.199.133.161:23500'
+'201.140.113.90:37193'
+'185.199.84.161:53281'
+'84.247.236.102:35988'
+'200.52.144.77:8080'
+'96.87.184.101:37134'
+
+
+    ]
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -47,14 +63,16 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'task.middlewares.TaskSpiderMiddleware': 543,
+#    'project.middlewares.ProjectSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'task.middlewares.TaskDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'project.middlewares.ProjectDownloaderMiddleware': 543,
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -65,7 +83,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'task.pipelines.TaskPipeline': 300,
+#    'project.pipelines.ProjectPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
