@@ -8,3 +8,4 @@ setup(
     packages     = find_packages(),
     entry_points = {'scrapy': ['settings = project.settings']},
 )
+k
