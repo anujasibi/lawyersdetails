@@ -21,7 +21,7 @@ class SpiderSpider(scrapy.Spider):
          news=response.css('div.row a.v-serp-block-link::attr("href")').extract()
          for new in news:
             newu =response.urljoin(new)
-            yield scrapy.Request(url, callback=self.parse_details)
+            yield scrapy.Request(newu, callback=self.parse_details)
     def parse_details(self, response):
         yield{
              'name':response.css('title::text').extract_first()
