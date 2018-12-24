@@ -9,10 +9,10 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'project'
+BOT_NAME = 'task'
 
-SPIDER_MODULES = ['project.spiders']
-NEWSPIDER_MODULE = 'project.spiders'
+SPIDER_MODULES = ['task.spiders']
+NEWSPIDER_MODULE = 'task.spiders'
 
 
 #Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -63,13 +63,14 @@ ROTATING_PROXY_LIST=[
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'project.middlewares.ProjectSpiderMiddleware': 543,
+#    'task.middlewares.TaskSpiderMiddleware': 543,
 #}
+
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'project.middlewares.ProjectDownloaderMiddleware': 543,
+    'task.middlewares.TaskDownloaderMiddleware': 543,
     'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
@@ -83,7 +84,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'project.pipelines.ProjectPipeline': 300,
+#    'task.pipelines.TaskPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -104,5 +105,7 @@ DOWNLOADER_MIDDLEWARES = {
 #HTTPCACHE_ENABLED = True
 #HTTPCACHE_EXPIRATION_SECS = 0
 #HTTPCACHE_DIR = 'httpcache'
+#HTTPCACHE_IGNORE_HTTP_CODES = []
+#HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
