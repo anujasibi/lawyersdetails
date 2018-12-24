@@ -8,7 +8,7 @@ from urlparse import urljoin
 
 class SpiderSpider(scrapy.Spider):
     name = 'new'
-    allowed_domains = ['www.avvo.com/all-lawyers/ny/new_york.html']
+    allowed_domains = ['www.avvo.com/all-lawyers/ny/new_york']
     start_urls = ['http://www.avvo.com/all-lawyers/ny/new_york.html']
 
     def parse(self, response):
