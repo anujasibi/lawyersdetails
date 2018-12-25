@@ -24,11 +24,11 @@ class SpiderSpider(scrapy.Spider):
             yield scrapy.Request(newu, callback=self.parse_details)
     def parse_details(self, response):
         yield{
-             'name':response.css('title::text').extract_first()
-             'about':response.css('div.card p::text').extract()
-             'license':response.css('li time::text').extract()
-             'avvo_rating':response.css('.row span.h3::text').extract()
-             'client_rating':response.css('.row span.small::text').extract()
+             'name':response.css('title::text').extract_first(),
+             'about':response.css('div.card p::text').extract(),
+             'license':response.css('li time::text').extract(),
+             'avvo_rating':response.css('.row span.h3::text').extract(),
+             'client_rating':response.css('.row span.small::text').extract(),
              'image_url':response.css('.row img::attr(src)').extract_first()
               }                        
             
